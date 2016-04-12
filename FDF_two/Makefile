@@ -6,7 +6,7 @@
 #    By: nrandria <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 11:23:48 by nrandria          #+#    #+#              #
-#    Updated: 2016/02/24 04:51:47 by nrandria         ###   ########.fr        #
+#    Updated: 2016/04/07 16:55:55 by cchampda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = libft/libft.a
 
-SRC = calc_put.c fdf.c map.c\
+SRC = fdf.c \
 
 EXE = fdf
 
