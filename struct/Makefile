@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nrandria <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: cchampda <cchampda@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 11:23:48 by nrandria          #+#    #+#              #
-#    Updated: 2016/04/07 16:55:55 by cchampda         ###   ########.fr        #
+#    Updated: 2016/04/26 17:10:32 by cchampda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = libft/libft.a
 
-SRC = fdf.c \
+SRC = fdf.c tools.c othertools.c \
 
 EXE = fdf
 
