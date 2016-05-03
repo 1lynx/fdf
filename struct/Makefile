@@ -6,7 +6,7 @@
 #    By: cchampda <cchampda@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 11:23:48 by nrandria          #+#    #+#              #
-#    Updated: 2016/04/26 17:10:32 by cchampda         ###   ########.fr        #
+#    Updated: 2016/05/03 18:33:40 by cchampda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@
 
 NAME = libft/libft.a
 
-SRC = fdf.c tools.c othertools.c \
+SRC = fdf.c init_img.c list_handle.c map_make.c \
 
 EXE = fdf
 
-GCC = gcc -o fdf -Wall -Wextra -Werror -lmlx -framework OpenGL -framework Appkit
+GCC = gcc -o fdf -Wall -Wextra -Werror -O3 -Ofast -lmlx -framework OpenGL -framework Appkit
 
 
 all: $(NAME)
