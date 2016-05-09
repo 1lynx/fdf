@@ -6,7 +6,7 @@
 /*   By: cchampda <cchampda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 16:35:26 by cchampda          #+#    #+#             */
-/*   Updated: 2016/05/03 18:32:15 by cchampda         ###   ########.fr       */
+/*   Updated: 2016/05/09 17:03:05 by cchampda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <mlx.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 # define HGT 700
 # define WDT 700
 # define BUF_SIZE 1000
@@ -57,6 +58,7 @@ struct s_info
 	int 			endian;
 	int 			zoom;
 	int 			place;
+	int 			deep;
 	int				color_b;
 	int 			color_g;
 	int 			color_r;
@@ -77,6 +79,8 @@ void			ft_push_back_t(t_co **list, t_use *u);
 t_co 			*add_link(t_use *u);
 void 			goto_n(t_use *u, t_co **l, t_info *i, int n);
 t_co 			*get_data(char *file, t_co *list, t_use *use);
+void 			modify_list(t_co *l, t_info *i);
+
 
 // CREATE MAP
 

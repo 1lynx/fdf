@@ -1,5 +1,17 @@
 #include "fdf.h"
 
+void modify_list(t_co *l, t_info *i)
+{
+	 while(l)
+	 {
+		 l->x = (sqrt(2) / 2) * ((l->x) - (l->y));
+		 l->y = (sqrt(2) / sqrt(3)) * (l->z) - (1 / (sqrt(6)) * (l->x + l->y));
+		 l->x = l->x * i->zoom + i->place;
+		 l->y = l->y * i->zoom + i->place;
+		 l = l->next;
+	 }
+}
+
 
 void print_list(t_co *list)
 {
@@ -60,8 +72,8 @@ void goto_n(t_use *u, t_co **l, t_info *i, int n)
 		{
 			u->xi = u->xf;
 			u->yi = u->yf;
-			u->xf = (tmp->x) * i->zoom + i->place;
-			u->yf = (tmp->y) * i->zoom + i->place;
+			u->xf = (tmp->x);
+			u->yf = (tmp->y);
 			if(bi > 0)
 			{
 				line_putter(i, u);

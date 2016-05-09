@@ -6,9 +6,10 @@ void init(t_info *info, t_use *u)
 	info->color_g = 255;
 	info->color_b = 255;
 	info->zoom = 100;
-	info->place = 200;
+	info->place = 100;
 	u->y_line = 0;
 	u->nb_tmp = 0;
+	info->deep = 10;
 }
 
 void init_co(t_use *u)
