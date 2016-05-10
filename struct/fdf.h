@@ -6,7 +6,7 @@
 /*   By: cchampda <cchampda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 16:35:26 by cchampda          #+#    #+#             */
-/*   Updated: 2016/05/09 17:03:05 by cchampda         ###   ########.fr       */
+/*   Updated: 2016/05/10 15:36:35 by cchampda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ struct s_info
 	int 			size_line;
 	int 			endian;
 	int 			zoom;
-	int 			place;
+	int 			xplace;
+	int 			yplace;
 	int 			deep;
 	int				color_b;
 	int 			color_g;
@@ -86,6 +87,7 @@ void 			modify_list(t_co *l, t_info *i);
 
 void 			map_maker(t_info *info, t_co *list, t_use *use);
 void 			second_mapping(t_info *i, t_co *l, t_use *u);
+int				key_hook(int key, t_info *i, t_co *l, t_use *u);
 
 
 

@@ -6,7 +6,8 @@ void init(t_info *info, t_use *u)
 	info->color_g = 255;
 	info->color_b = 255;
 	info->zoom = 100;
-	info->place = 100;
+	info->xplace = HGT / 2;
+	info->yplace = (WDT / 2);
 	u->y_line = 0;
 	u->nb_tmp = 0;
 	info->deep = 10;
@@ -62,11 +63,11 @@ void			put_pixel_to_image(int x, int y, t_info *i)
 	}
 }
 
-void 	make_img(t_info *info, t_co *list, t_use * use)
+void 	make_img(t_info *i, t_co *l, t_use * u)
 {
-	info->mlx_img = mlx_new_image(info->mlx, HGT, WDT);
-	info->img_ptr = mlx_get_data_addr(info->mlx_img, &(info->bits_per_pixel), &(info->size_line), &(info->endian));
-	second_mapping(info, list, use);
-	mlx_put_image_to_window(info->mlx, info->win, info->mlx_img, 0, 0);
-	mlx_destroy_image(info->mlx, info->img_ptr);
+	i->mlx_img = mlx_new_image(i->mlx, HGT, WDT);
+	i->img_ptr = mlx_get_data_addr(i->mlx_img, &(i->bits_per_pixel), &(i->size_line), &(i->endian));
+	second_mapping(i, l, u);
+	mlx_put_image_to_window(i->mlx, i->win, i->mlx_img, 0, 0);
+	mlx_destroy_image(i->mlx, i->img_ptr);
 }

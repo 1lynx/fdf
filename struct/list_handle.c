@@ -2,12 +2,16 @@
 
 void modify_list(t_co *l, t_info *i)
 {
+	int nx;
+	int ny;
+
 	 while(l)
 	 {
-		 l->x = (sqrt(2) / 2) * ((l->x) - (l->y));
-		 l->y = (sqrt(2) / sqrt(3)) * (l->z) - (1 / (sqrt(6)) * (l->x + l->y));
-		 l->x = l->x * i->zoom + i->place;
-		 l->y = l->y * i->zoom + i->place;
+		nx = i->xplace + ((sqrt(2) / 2) * ((l->x * i->zoom) - (l->y * i->zoom)));
+		ny = i->yplace - ((sqrt(2 / 3) * (l->z * i->zoom / i->deep)) -
+				((1 / sqrt(9)) * (i->zoom * (l->x + l->y))));
+		l->x = nx;
+		l->y = ny;
 		 l = l->next;
 	 }
 }
