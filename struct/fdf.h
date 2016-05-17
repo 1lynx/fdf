@@ -6,7 +6,7 @@
 /*   By: cchampda <cchampda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 16:35:26 by cchampda          #+#    #+#             */
-/*   Updated: 2016/05/10 15:36:35 by cchampda         ###   ########.fr       */
+/*   Updated: 2016/05/17 14:39:06 by cchampda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ typedef struct s_co t_co;
 
 struct s_co
 {
+	int		x_base;
+	int		y_base;
+	int		z_base;
     int 	x;
     int 	y;
 	int 	z;
@@ -81,6 +84,7 @@ t_co 			*add_link(t_use *u);
 void 			goto_n(t_use *u, t_co **l, t_info *i, int n);
 t_co 			*get_data(char *file, t_co *list, t_use *use);
 void 			modify_list(t_co *l, t_info *i);
+void 			init_co_list(t_co *list);
 
 
 // CREATE MAP

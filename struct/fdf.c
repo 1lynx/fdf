@@ -6,7 +6,7 @@
 /*   By: cchampda <cchampda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 16:34:14 by cchampda          #+#    #+#             */
-/*   Updated: 2016/05/11 12:48:38 by cchampda         ###   ########.fr       */
+/*   Updated: 2016/05/17 18:05:19 by cchampda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int			key_hook(int key, t_info *i, t_co *l, t_use *u)
 {
 	printf("%d\n", key);
-	i->zoom += (key == 126) ? 1 : 0;
-
+	// i->zoom += (key == 126) ? 1 : 0;
 	make_img(i, l, u);
+	printf("hello");
 	return (1);
 }
 
@@ -35,8 +35,6 @@ int	main(int ac, char **av)
 	info = malloc(sizeof(t_info));
 	init(info, use);
 	list = get_data(av[1], list, use);
-	// sist = get_data(av[1], list, use);
-	// print_list(list);
 	info->mlx = mlx_init();
 	info->win = mlx_new_window(info->mlx, HGT, WDT, "colin");
 	make_img(info, list, use);

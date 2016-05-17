@@ -5,9 +5,9 @@ void init(t_info *info, t_use *u)
 	info->color_r = 255;
 	info->color_g = 255;
 	info->color_b = 255;
-	info->zoom = 100;
+	info->zoom = 5;
 	info->xplace = HGT / 2;
-	info->yplace = (WDT / 2);
+	info->yplace = (WDT / 4);
 	u->y_line = 0;
 	u->nb_tmp = 0;
 	info->deep = 10;
@@ -67,7 +67,10 @@ void 	make_img(t_info *i, t_co *l, t_use * u)
 {
 	i->mlx_img = mlx_new_image(i->mlx, HGT, WDT);
 	i->img_ptr = mlx_get_data_addr(i->mlx_img, &(i->bits_per_pixel), &(i->size_line), &(i->endian));
+	init_co_list(l);
+	modify_list(l, i);
 	second_mapping(i, l, u);
 	mlx_put_image_to_window(i->mlx, i->win, i->mlx_img, 0, 0);
-	// mlx_destroy_image(i->mlx, i->img_ptr);
+	mlx_destroy_image(i->mlx, i->img_ptr);
+
 }

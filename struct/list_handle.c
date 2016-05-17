@@ -5,18 +5,28 @@ void modify_list(t_co *l, t_info *i)
 	int nx;
 	int ny;
 
-	print_list(l);
+
 	 while(l)
 	 {
-		nx = i->xplace + ((sqrt(2) / 2) * ((l->x * i->zoom) - (l->y * i->zoom)));
-		ny = i->yplace - ((sqrt(2 / 3) * (l->z * i->zoom / i->deep)) -
-				((1 / sqrt(9)) * (i->zoom * (l->x + l->y))));
+		nx = i->xplace + ((sqrt(3.0) / 3.0) * ((l->x * i->zoom) - (l->y * i->zoom)));
+		ny = i->yplace - ((sqrt(2.0 / 3.0) * (l->z * i->zoom / i->deep)) -
+				((1.0 / sqrt(9.0)) * (i->zoom * (l->x + l->y))));
 		l->x = nx;
 		l->y = ny;
-		 l = l->next;
+		l = l->next;
 	 }
 }
 
+void init_co_list(t_co *list)
+{
+	while(list)
+	{
+		list->x = list->x_base;
+		list->y = list->y_base;
+		list->z = list->z_base;
+		list = list->next;
+	}
+}
 
 void print_list(t_co *list)
 {
@@ -53,9 +63,9 @@ t_co *add_link(t_use *u)
 	tmp = malloc(sizeof(t_co));
 	if (tmp)
 	{
-		tmp->x = u->x_line;
-		tmp->y = u->y_line;
-		tmp->z = u->z_tmp;
+		tmp->x_base = u->x_line;
+		tmp->y_base = u->y_line;
+		tmp->z_base = u->z_tmp;
 		tmp->nb = u->nb_tmp;
 		tmp->next = NULL;
 	}
@@ -114,5 +124,6 @@ t_co *get_data(char *file, t_co *list, t_use *u)
 		free(line);
 		u->y_line++;
 	}
+	close(fd);
 	return(list);
 }
