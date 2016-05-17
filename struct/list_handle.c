@@ -5,6 +5,7 @@ void modify_list(t_co *l, t_info *i)
 	int nx;
 	int ny;
 
+	print_list(l);
 	 while(l)
 	 {
 		nx = i->xplace + ((sqrt(2) / 2) * ((l->x * i->zoom) - (l->y * i->zoom)));

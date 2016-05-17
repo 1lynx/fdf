@@ -6,7 +6,7 @@
 /*   By: cchampda <cchampda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 16:34:14 by cchampda          #+#    #+#             */
-/*   Updated: 2016/05/10 15:45:06 by cchampda         ###   ########.fr       */
+/*   Updated: 2016/05/11 12:48:38 by cchampda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int			key_hook(int key, t_info *i, t_co *l, t_use *u)
 int	main(int ac, char **av)
 {
 	t_co *list;
-	t_co *snlist;
 	t_info *info;
 	t_use *use;
 	list = NULL;
@@ -36,12 +35,11 @@ int	main(int ac, char **av)
 	info = malloc(sizeof(t_info));
 	init(info, use);
 	list = get_data(av[1], list, use);
-	snlist = get_data(av[1], list, use);
-	print_list(list);
+	// sist = get_data(av[1], list, use);
+	// print_list(list);
 	info->mlx = mlx_init();
 	info->win = mlx_new_window(info->mlx, HGT, WDT, "colin");
-	make_img(info, snlist, use);
-	print_list(list);
+	make_img(info, list, use);
 	mlx_hook(info->win, 2, 3, key_hook, info);
 	mlx_loop(info->mlx);
 }

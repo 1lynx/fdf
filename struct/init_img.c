@@ -69,5 +69,5 @@ void 	make_img(t_info *i, t_co *l, t_use * u)
 	i->img_ptr = mlx_get_data_addr(i->mlx_img, &(i->bits_per_pixel), &(i->size_line), &(i->endian));
 	second_mapping(i, l, u);
 	mlx_put_image_to_window(i->mlx, i->win, i->mlx_img, 0, 0);
-	mlx_destroy_image(i->mlx, i->img_ptr);
+	// mlx_destroy_image(i->mlx, i->img_ptr);
 }
