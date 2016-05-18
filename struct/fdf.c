@@ -6,7 +6,7 @@
 /*   By: cchampda <cchampda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 16:34:14 by cchampda          #+#    #+#             */
-/*   Updated: 2016/05/18 16:03:45 by cchampda         ###   ########.fr       */
+/*   Updated: 2016/05/18 18:36:56 by cchampda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	main(int ac, char **av)
 	info->mlx = mlx_init();
 	info->win = mlx_new_window(info->mlx, HGT, WDT, "colin");
 	make_img(info, list);
-	mlx_hook(info->win, 2, 3, key_hook, info);
+	mlx_key_hook(info->win, key_hook, info);
 	mlx_loop(info->mlx);
 }

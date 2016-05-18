@@ -5,12 +5,12 @@ void init(t_info *i)
 	i->color_r = 255;
 	i->color_g = 255;
 	i->color_b = 255;
-	i->zoom = 5;
-	i->xplace = HGT / 2;
-	i->yplace = (WDT / 4);
+	i->zoom = 30;
+	i->xplace = 0;
+	i->yplace = 0;
 	i->y_line = 0;
 	i->nb_tmp = 0;
-	i->deep = 5;
+	i->deep = 10;
 }
 
 void init_co(t_info *i)
