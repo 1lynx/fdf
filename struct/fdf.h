@@ -6,7 +6,7 @@
 /*   By: cchampda <cchampda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 16:35:26 by cchampda          #+#    #+#             */
-/*   Updated: 2016/05/18 16:03:44 by cchampda         ###   ########.fr       */
+/*   Updated: 2016/05/18 16:35:10 by cchampda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,6 @@
 # define HGT 700
 # define WDT 700
 # define BUF_SIZE 1000
-
-typedef struct s_use t_use;
-
-struct s_use
-{
-	int x_line;
-	int y_line;
-	int z_tmp;
-	int nb_tmp;
-	int xi;
-	int yi;
-	int xf;
-	int yf;
-};
 
 typedef struct s_co t_co;
 
