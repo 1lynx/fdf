@@ -41,7 +41,7 @@ void print_list(t_co *list)
 	 }
 }
 
-void		ft_push_back_t(t_co **list, t_use *u)
+void		ft_push_back_t(t_co **list, t_info *i)
 {
 	t_co	*tmp;
 
@@ -50,29 +50,29 @@ void		ft_push_back_t(t_co **list, t_use *u)
 	{
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = add_link(u);
+		tmp->next = add_link(i);
 	}
 	else
-		*list = add_link(u);
+		*list = add_link(i);
 }
 
-t_co *add_link(t_use *u)
+t_co *add_link(t_info *i)
 {
 	t_co *tmp;
 
 	tmp = malloc(sizeof(t_co));
 	if (tmp)
 	{
-		tmp->x_base = u->x_line;
-		tmp->y_base = u->y_line;
-		tmp->z_base = u->z_tmp;
-		tmp->nb = u->nb_tmp;
+		tmp->x_base = i->x_line;
+		tmp->y_base = i->y_line;
+		tmp->z_base = i->z_tmp;
+		tmp->nb = i->nb_tmp;
 		tmp->next = NULL;
 	}
 	return(tmp);
 }
 
-void goto_n(t_use *u, t_co **l, t_info *i, int n)
+void goto_n(t_co **l, t_info *i, int n)
 {
 	t_co *tmp;
 	int bi;
@@ -81,17 +81,17 @@ void goto_n(t_use *u, t_co **l, t_info *i, int n)
 	bi = 0;
 	tmp = *l;
 
-	while(cnt < (u->y_line - 1))
+	while(cnt < (i->y_line - 1))
 	{
 		if(tmp->nb == n)
 		{
-			u->xi = u->xf;
-			u->yi = u->yf;
-			u->xf = (tmp->x);
-			u->yf = (tmp->y);
+			i->xi = i->xf;
+			i->yi = i->yf;
+			i->xf = (tmp->x);
+			i->yf = (tmp->y);
 			if(bi > 0)
 			{
-				line_putter(i, u);
+				line_putter(i);
 				cnt++;
 			}
 			bi++;
@@ -100,29 +100,29 @@ void goto_n(t_use *u, t_co **l, t_info *i, int n)
 	}
 }
 
-t_co *get_data(char *file, t_co *list, t_use *u)
+t_co *get_data(char *file, t_co *list, t_info *i)
 {
 	char *line;
 	char **tmp;
 	int fd;
 
-	u->y_line = 0;
+	i->y_line = 0;
 	fd = open(file, O_RDWR);
 	while (get_next_line(fd, &line) > 0)
 	{
-		u->x_line = 0;
-		u->nb_tmp = 0;
+		i->x_line = 0;
+		i->nb_tmp = 0;
 		tmp = ft_strsplit(line, ' ');
-		while (tmp[u->x_line])
+		while (tmp[i->x_line])
 		{
-			u->z_tmp = ft_atoi(tmp[u->x_line]);
-			ft_push_back_t(&list, u);
-			u->x_line++;
-			u->nb_tmp++;
+			i->z_tmp = ft_atoi(tmp[i->x_line]);
+			ft_push_back_t(&list, i);
+			i->x_line++;
+			i->nb_tmp++;
 		}
 		free(tmp);
 		free(line);
-		u->y_line++;
+		i->y_line++;
 	}
 	close(fd);
 	return(list);

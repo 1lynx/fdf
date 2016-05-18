@@ -1,27 +1,27 @@
 #include "fdf.h"
 
-void init(t_info *info, t_use *u)
+void init(t_info *i)
 {
-	info->color_r = 255;
-	info->color_g = 255;
-	info->color_b = 255;
-	info->zoom = 5;
-	info->xplace = HGT / 2;
-	info->yplace = (WDT / 4);
-	u->y_line = 0;
-	u->nb_tmp = 0;
-	info->deep = 10;
+	i->color_r = 255;
+	i->color_g = 255;
+	i->color_b = 255;
+	i->zoom = 5;
+	i->xplace = HGT / 2;
+	i->yplace = (WDT / 4);
+	i->y_line = 0;
+	i->nb_tmp = 0;
+	i->deep = 5;
 }
 
-void init_co(t_use *u)
+void init_co(t_info *i)
 {
-	u->xi = 0;
-	u->yi = 0;
-	u->xf = 0;
-	u->yi = 0;
+	i->xi = 0;
+	i->yi = 0;
+	i->xf = 0;
+	i->yi = 0;
 }
 
-void			line_putter(t_info *i, t_use *u)
+void			line_putter(t_info *i)
 {
 	int dx;
 	int sx;
@@ -30,24 +30,24 @@ void			line_putter(t_info *i, t_use *u)
 	int err;
 	int e2;
 
-	dx = abs((u->xf - u->xi));
-	sx = u->xi < u->xf ? 1 : -1;
-	dy = abs((u->yf - u->yi));
-	sy = u->yi < u->yf ? 1 : -1;
+	dx = abs((i->xf - i->xi));
+	sx = i->xi < i->xf ? 1 : -1;
+	dy = abs((i->yf - i->yi));
+	sy = i->yi < i->yf ? 1 : -1;
 	err = (dx > dy ? dx : -dy) / 2;
-	while (!(u->xi == u->xf && u->yi == u->yf))
+	while (!(i->xi == i->xf && i->yi == i->yf))
 	{
-		put_pixel_to_image(u->xi, u->yi, i);
+		put_pixel_to_image(i->xi, i->yi, i);
 		e2 = err;
 		if (e2 > -dx)
 		{
 			err -= dy;
-			u->xi += sx;
+			i->xi += sx;
 		}
 		if (e2 < dy)
 		{
 			err += dx;
-			u->yi += sy;
+			i->yi += sy;
 		}
 	}
 }
@@ -63,13 +63,13 @@ void			put_pixel_to_image(int x, int y, t_info *i)
 	}
 }
 
-void 	make_img(t_info *i, t_co *l, t_use * u)
+void 	make_img(t_info *i, t_co *l)
 {
 	i->mlx_img = mlx_new_image(i->mlx, HGT, WDT);
 	i->img_ptr = mlx_get_data_addr(i->mlx_img, &(i->bits_per_pixel), &(i->size_line), &(i->endian));
 	init_co_list(l);
 	modify_list(l, i);
-	second_mapping(i, l, u);
+	second_mapping(i, l);
 	mlx_put_image_to_window(i->mlx, i->win, i->mlx_img, 0, 0);
 	mlx_destroy_image(i->mlx, i->img_ptr);
 
