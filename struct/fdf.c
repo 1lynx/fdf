@@ -6,37 +6,53 @@
 /*   By: cchampda <cchampda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 16:34:14 by cchampda          #+#    #+#             */
-/*   Updated: 2016/05/18 18:36:56 by cchampda         ###   ########.fr       */
+/*   Updated: 2016/05/26 23:49:10 by cchampda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			key_hook(int key, t_info *i, t_co *l)
+void print_tab(t_info *s)
 {
-	printf("%d\n", key);
-	i->zoom += (key == 126) ? 1 : 0;
-	make_img(i, l);
-	printf("hello");
-	return (1);
+
+	int x = 0;
+	int y = 0;
+	while(x != s->x_lines)
+	{
+		y = 0;
+		while(y != s->y_lines)
+		{
+			printf("%d ", s->tab[x][y]);
+			y++;
+		}
+		printf("\n");
+		x++;
+	}
+
 }
 
 int	main(int ac, char **av)
 {
-	t_co *list;
-	t_info *info;
+	t_info *i;
+	ac = 0;
+	char *line;
+	int fd;
+	int lines;
+	int c = 0;
 
-	list = NULL;
+	fd = open(av[1], O_RDONLY);
+	lines = count_line(av[1]);
+	i = malloc(sizeof(t_info));
+	i->tab = (int **)malloc(sizeof(int *) * lines);
+	ft_memset(i, 0, sizeof(i));
+	while ((get_next_line(fd, &line)) > 0)
+	{
+				i->tab[c] = get_int_tab(line, i);
+				c++;
+	}
+	i->x_lines = c;
+	i->tab[c] = NULL;
+	i->map_name = av[1];
+	init_window(i);
 
-	if (ac > 2)
-		return(0);
-
-	info = malloc(sizeof(t_info));
-	init(info);
-	list = get_data(av[1], list, info);
-	info->mlx = mlx_init();
-	info->win = mlx_new_window(info->mlx, HGT, WDT, "colin");
-	make_img(info, list);
-	mlx_key_hook(info->win, key_hook, info);
-	mlx_loop(info->mlx);
 }

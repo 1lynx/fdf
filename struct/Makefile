@@ -6,7 +6,7 @@
 #    By: cchampda <cchampda@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 11:23:48 by nrandria          #+#    #+#              #
-#    Updated: 2016/05/03 18:33:40 by cchampda         ###   ########.fr        #
+#    Updated: 2016/05/24 17:25:42 by cchampda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = libft/libft.a
 
-SRC = fdf.c init_img.c list_handle.c map_make.c \
+SRC = fdf.c get_in_tab.c init.c trace.c key.c \
 
 EXE = fdf
 
