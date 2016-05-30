@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_in_tab.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cchampda <cchampda@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/30 16:48:51 by cchampda          #+#    #+#             */
+/*   Updated: 2016/05/30 17:20:37 by cchampda         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-
-int	count_col(char **tab, t_info *s)
+int		count_col(char **tab, t_info *s)
 {
 	int i;
+
 	i = 0;
 	while (tab[i])
 		i++;
@@ -11,11 +23,11 @@ int	count_col(char **tab, t_info *s)
 	return (i);
 }
 
-int	count_line(char *av)
+int		count_line(char *av)
 {
-	int fd;
-	char *line;
-	int i;
+	int		fd;
+	char	*line;
+	int		i;
 
 	i = 0;
 	if ((fd = open(av, O_RDONLY)) > 0)
@@ -23,7 +35,7 @@ int	count_line(char *av)
 		while (get_next_line(fd, &line) > 0)
 			i++;
 		close(fd);
-    return (i);
+		return (i);
 	}
 	else
 		return (-1);
@@ -31,17 +43,21 @@ int	count_line(char *av)
 
 int		*get_int_tab(char *str, t_info *s)
 {
-	int i;
-	char **tmp;
-	int *tab = NULL;
+	int		i;
+	char	**tmp;
+	int		*tab;
 
+	tab = NULL;
 	i = 0;
 	tmp = ft_strsplit(str, ' ');
 	tab = (int *)malloc(sizeof(int) * count_col(tmp, s));
 	while (tmp[i])
 	{
+		check_char(*tmp[i]);
 		tab[i] = ft_atoi(tmp[i]);
 		i++;
 	}
-	return(tab);
+	if (!(i))
+		FDF_ERROR;
+	return (tab);
 }

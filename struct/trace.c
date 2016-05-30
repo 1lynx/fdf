@@ -1,22 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   trace.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cchampda <cchampda@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/30 16:48:58 by cchampda          #+#    #+#             */
+/*   Updated: 2016/05/30 18:17:06 by cchampda         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-void put_pixel_to_image(int x, int y, t_info *i)
+void		put_pixel_to_image(int x, int y, t_info *i)
 {
-		if 	(x < WDT && y < HGT && x > 0 && y > 0)
-		{
-			i->ptr_img[(i->sl * y) + (4 * x) + 2] = i->B;
-			i->ptr_img[(i->sl * y) + (4 * x) + 1] = i->G;
-			i->ptr_img[(i->sl * y) + (4 * x)] = i->R;
-		}
+	if (x < WDT && y < HGT && x > 0 && y > 0)
+	{
+		i->ptr_img[(i->sl * y) + (4 * x) + 2] = i->blue;
+		i->ptr_img[(i->sl * y) + (4 * x) + 1] = i->green;
+		i->ptr_img[(i->sl * y) + (4 * x)] = i->red;
+	}
 }
 
-t_point	calcul(int x, int y, int z, t_info *i)
+t_point		calcul(int x, int y, int z, t_info *i)
 {
 	t_point point;
 
-	if(i->mode == 0)
+	if (i->mode == 0)
 	{
-		point.x = i->x_place + ((sqrt(2.0) / 2.0) * ((x * i->zoom) - (y * i->zoom)));
+		point.x = i->x_place + ((sqrt(2.0) / 2.0) * ((x * i->zoom) -\
+		(y * i->zoom)));
 		point.y = i->y_place - ((sqrt(2.0 / 2.0) * (z * i->zoom / i->deep)) -
 		((i->flat / sqrt(9.0)) * (i->zoom * (x + y))));
 		return (point);
@@ -30,17 +43,15 @@ t_point	calcul(int x, int y, int z, t_info *i)
 	}
 }
 
-void print_trace(t_point p1, t_point p2, t_info *i)
+void		print_trace(t_point p1, t_point p2, t_info *i)
 {
 	i->dx = abs((p2.x - p1.x));
 	i->sx = p1.x < p2.x ? 1 : -1;
 	i->dy = abs((p2.y - p1.y));
 	i->sy = p1.y < p2.y ? 1 : -1;
 	i->err = (i->dx > i->dy ? i->dx : -i->dy) / 2;
-
 	while (!(p1.x == p2.x && p1.y == p2.y))
 	{
-
 		put_pixel_to_image(p1.x, p1.y, i);
 		i->err2 = i->err;
 		if (i->err2 > -i->dx)
@@ -56,13 +67,11 @@ void print_trace(t_point p1, t_point p2, t_info *i)
 	}
 }
 
-void print_map(t_info *s)
+void		print_map(t_info *s)
 {
 	t_point p1;
 	t_point p2;
 
-	s->x = 0;
-	s->y = 0;
 	while (s->y < s->x_lines)
 	{
 		while (s->x < s->y_lines)
