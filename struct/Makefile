@@ -6,7 +6,7 @@
 #    By: cchampda <cchampda@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 11:23:48 by nrandria          #+#    #+#              #
-#    Updated: 2016/05/30 15:36:27 by cchampda         ###   ########.fr        #
+#    Updated: 2016/05/31 14:52:01 by cchampda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,16 @@
 
 NAME = libft/libft.a
 
-SRC = fdf.c get_in_tab.c init.c trace.c key.c error.c \
+SRC =	srcs/error.c				\
+		srcs/fdf.c	\
+		srcs/get_in_tab.c		\
+		srcs/init.c			\
+		srcs/key.c				\
+		srcs/trace.c				\
 
 EXE = fdf
 
-GCC = gcc -o fdf -Wall -Wextra -Werror -O3 -Ofast -lmlx -framework OpenGL -framework Appkit
+GCC = gcc -o fdf -Wall -Wextra -Werror -lmlx -framework OpenGL -framework Appkit -O3 -Ofast
 
 
 all: $(NAME)
